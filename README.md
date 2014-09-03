@@ -5,7 +5,7 @@ F1 Students, join us in chat:
 # Foundations of Computer Science and Web Development.
 _A [Code Fellows](http://codefellows.com) evening class_
 
-Key Details |
+Key Details |  |
 --- | ---
 Dates | Sept 3 - Sept 29 
 Class Times | 7 - 9pm, Monday &amp; Wednesday evenings
