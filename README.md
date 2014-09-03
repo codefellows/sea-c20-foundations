@@ -1,4 +1,3 @@
-F1 Students, join us in chat:
 [![Gitter chat](https://badges.gitter.im/codefellows/sea-c20-foundations.png)](https://gitter.im/codefellows/sea-c20-foundations)
 
 
