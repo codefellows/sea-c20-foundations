@@ -24,11 +24,8 @@ REQUIREMENTS 
     - free of any viruses and malware
     - using the latest, fully updated operating system
     - and able to reliably connect to the internet via wireless network
-
  1. Come with your laptop fully charged, as there are limited outlets in the classroom
-
     - Arrive early if you need a seat with a power outlet
-
  2. Please order your textbooks NOW so they arrive before class starts. It’s a 2-book set, both are excellent:  
   a. HTML & CSS: http://www.amazon.com/dp/1118008189  
   b. JavaScript & jQuery: http://www.amazon.com/dp/1118531647/  
