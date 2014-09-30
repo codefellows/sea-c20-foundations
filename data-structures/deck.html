@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <title>
+      Deck of Cards
+    </title>
+    <style>
+      #deck {
+        width: 52em;
+        background-color: purple;
+        color: white;
+        padding: 1em;
+        text-align: center;
+      }
+
+      .card {
+        width: 4em;
+        display: inline-block;
+      }
+
+      .swapping {
+        background-color: yellow;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fisher-Yates shuffle for 1 deck of cards</h1>
+    <ul id="deck" class="collection">
+    </ul>
+    <button>Shuffle Now!</button>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      function shuffle(m) {
+        // swap last card with a random card from left
+        var $m,
+          rand = Math.floor(Math.random() * m),
+          $rand;
+
+        $('li').removeClass('swapping');
+
+        $mth = $('.card:eq(' + m + ')')
+          .addClass('swapping')
+          .hide()
+          .fadeIn();
+        $rand = $('.card:eq(' + rand + ')')
+          .addClass('swapping')
+          .hide()
+          .fadeIn();
+
+        $mth.before($rand);
+        $('.card:eq(' + rand + ')').before($mth);
+
+        if (m > 0) {
+          setTimeout(shuffle, 500, m - 1);
+        } else {
+          $('li').removeClass('swapping');
+        };
+      }
+
+      $('button').on('click', function() {
+        shuffle($(".card").length - 1);
+      });
+
+      function Deck() {
+        this.suits = ['H', 'C', 'D', 'S'];
+        this.ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+        var theDeck = this;
+
+        $.each(this.suits, function(index, suit) {
+          $.each(theDeck.ranks, function(index, rank) {
+            var card = new Card(suit, rank);
+            $('#deck').append(card.toHTML());
+          });
+        });
+      }
+
+      function Card(suit, rank) {
+        this.suit = suit;
+        this.rank = rank;
+        this.toHTML = function() {
+          return '<li class="card">' + this.rank + '-' + this.suit + '</li>';
+        }
+      }
+
+      var deck = new Deck();
+    </script>
+  </body>
+</html>
+
+

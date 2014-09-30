@@ -1,0 +1,81 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <p>
+      Add: <input type="text" id="new-data">
+    </p>
+    <div id='binary-tree'>
+
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      function NullTree() {
+        this.data = null;
+        this.left = null;
+        this.right = null;
+
+        this.depth = function() {
+          return 0;
+        }
+
+        this.toHTML = function() {
+          return null;
+        };
+
+        this.add = function() {
+          return null;
+        };
+      }
+
+      function Tree(root, data, left, right) {
+        this.root = root;
+        this.data = data;
+        this.left = (left === undefined) ? new NullTree() : left;
+        this.right = (right === undefined) ? new NullTree() : right;
+
+        this.depth = function() {
+          1 + Math.max(this.left.depth(), this.right.depth());
+        }
+
+        this.toHTML = function() {
+          return '<ol class="tree"><li>' + this.data + '</li>' +
+          '<li>' + this.left.toHTML() + '</li>' +
+          '<li>' + this.right.toHTML() + '</li></ol>';
+        };
+
+        this.add = function(value) {
+          if (this.data == null) {
+            this.data = value;
+          } else if (value < this.data) {
+            if (this.left.data === null) {
+              this.left = new Tree(false, value);
+            } else {
+              this.left.add(value);
+            }
+          } else {
+            if (this.right.data === null) {
+              this.right = new Tree(false, value);
+            } else {
+              this.right.add(value);
+            }
+          }
+
+          if (this.root == true) {
+            $('#binary-tree').html(this.toHTML());
+          }
+        }
+      }
+
+      var tree = new Tree(true);
+      $('#binary-tree').html(tree.toHTML());
+
+
+      $('#new-data').on('change', function() {
+        tree.add($(this).val());
+        $(this).val('').focus();
+      })
+    </script>
+  </body>
+</html>

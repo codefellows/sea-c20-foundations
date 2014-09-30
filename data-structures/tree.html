@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Treeeees!!</title>
+  </head>
+  <body>
+    <h1>Binary Search Tree</h1>
+    <p>
+      Add: <input type="text" id="tree-data">
+    </p>
+    <section id="tree">
+
+    </section>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      function Tree(data, left, right) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+
+        this.add = function(value) {
+          if (this.data == null) {
+            this.data = value;
+          } else if (value < this.data) {
+            // put in the left
+            if (this.left == null) {
+              this.left = new Tree(value, null, null);
+            } else {
+              this.left.add(value);
+            }
+          } else {
+            // put in the right
+            if (this.right == null) {
+              this.right = new Tree(value, null, null);
+            } else {
+              this.right.add(value);
+            }
+          }
+
+          $("#tree").html(this.toHTML());
+        };
+
+        this.toHTML = function() {
+          var dataHTML = '<li>' + this.data + '</li>';
+          var leftHTML = this.left == null ? '<li>null</li>' : '<li>' + this.left.toHTML() + '</li>';
+          var rightHTML = this.right == null ? '<li>null</li>' : '<li>' + this.right.toHTML() + '</li>';
+          return '<ol>' + dataHTML + leftHTML + rightHTML + '</ol>';
+        };
+      }
+
+      var tree = new Tree(null, null, null);
+
+      $("#tree-data").on('change', function() {
+        tree.add($(this).val());
+        $(this).val('');
+        $(this).focus();
+      })
+
+    </script>
+  </body>
+</html>
